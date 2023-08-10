@@ -92,10 +92,11 @@ class Login(APIView):
         }
         token = jwt.encode(payload_Data, 'secret',algorithm='HS256').decode('utf-8')
         response = Response()
-        response.set_cookie(key='jwt',value=token, httponly=True)
+        response.set_cookie(key='jwt',value=email_id, httponly=True, samesite='None', secure=True)
         response.data = {
             'jwt': token
         }
+        print(token)
         return response
 
 
@@ -252,3 +253,9 @@ class Reactupload_file(APIView):
         print(request.data.get('image'))
         temp=upload(request.data.get('image'))
         return Response(temp['secure_url'])
+    
+@authentication_classes([])
+class get_user(APIView):
+    def post(self,request):
+        print(request.user)
+        return Response({})

@@ -8,18 +8,28 @@ from rest_framework.exceptions import AuthenticationFailed
 class Authentication(BaseAuthentication):
 
     def authenticate(self, request):
+        # print('fadsf')
+        # token = request.COOKIES.get('jwt')
+        # if not token:
+        #     raise AuthenticationFailed('not user')
+        # try:
+        #     payload_Data = jwt.decode(token, 'secret', algorithm=['HS256'])
+        # except jwt.ExpiredSignatureError:
+        #     raise AuthenticationFailed('not user')
+        #
+        # user = User.objects.filter(id=payload_Data['id']).first()
+        # serializer = UserSerializer(user)
+        # # user=serializer.data
+        # return (user, None)
         token = request.COOKIES.get('jwt')
-
         if not token:
             raise AuthenticationFailed('not user')
         try:
-            payload_Data = jwt.decode(token, 'secret', algorithm=['HS256'])
+            payload_Data = token
         except jwt.ExpiredSignatureError:
             raise AuthenticationFailed('not user')
 
-        user = User.objects.filter(id=payload_Data['id']).first()
-        serializer = UserSerializer(user)
-        # user=serializer.data
+        user = User.objects.filter(email_id=payload_Data).first()
         return (user, None)
 
 
