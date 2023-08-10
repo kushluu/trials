@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Select } from "antd";
+
 import './dashboard.css';
 import axios from '../../axios-config';
 const Dashboard = () => {
@@ -101,7 +103,10 @@ const Dashboard = () => {
                         </div>
                         <div className="flip-card-back back">
                             <div>
-                                <input type='search' onKeyUp={(event)=>getUsers(event)}></input>
+                                <Select>
+
+                                </Select>
+                                {/* <input type='search' onKeyUp={(event)=>getUsers(event)}></input> */}
                                 <button onClick={handleFlip}> back</button>
                             </div>
                         </div>
@@ -121,3 +126,65 @@ const Dashboard = () => {
 
 
 export default Dashboard;
+
+
+
+
+
+
+// <Select
+// className={`form-control   ${
+//   touched?.jobDetails?.reportingManager &&
+//   errors?.jobDetails?.reportingManager
+//     ? "error-input"
+//     : ""
+// }`}
+// showSearch
+// allowClear
+// labelInValue
+// filterOption={false}
+// onSearch={searchManager}
+// placeholder="Search By Full Name OR ID"
+// type="text"
+// name="jobDetails.reportingManager"
+// disabled={
+//   values?.jobDetails?.company == ""
+// }
+// notFoundContent={
+//   managerLoading ? (
+//     <Spin size="small" />
+//   ) : showElement && managerData.data && manager.length === 0 ? (
+//     <div className="text-danger p-1 text-center">
+//       No data found
+//     </div>
+//   ) : null
+// }
+// value={
+//   values?.jobDetails?.reportingManager
+//     ? { key: values?.jobDetails?.reportingManager }
+//     : undefined
+// }
+// onChange={(event) => {
+//   setFieldValue("jobDetails.reportingManager", event?.value);
+//   setTimeout(() => { 
+//   event?.value
+//     ? manager?.map((mng) => {
+//         if (mng?.employee_id === event?.value) {
+//           setFieldValue("jobDetails.reportingManagerObj", {
+//             employee_id: event.value,
+//             full_name: mng?.full_name,
+//             user_id: mng?.user_id,
+//           });
+//           return;
+//         }
+//       })
+//     : setFieldValue("jobDetails.reportingManagerObj", "");
+//   }, 0)
+// }}
+// onBlur={(event) => {
+//   setFieldTouched(
+//     "jobDetails.reportingManager",
+//     event?.value
+//   );
+// }}
+// >
